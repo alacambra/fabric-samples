@@ -1,5 +1,9 @@
 package org.hyperledger.fabric.samples;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import java.io.StringReader;
+
 public class Car {
 
   private String make;
@@ -12,6 +16,13 @@ public class Car {
     this.model = model;
     this.color = color;
     this.owner = owner;
+  }
+
+  public Car(JsonObject jsonObject) {
+    this.make = jsonObject.getString("make", "");
+    this.model = jsonObject.getString("model", "");
+    this.color = jsonObject.getString("color", "");
+    this.owner = jsonObject.getString("owner", "");
   }
 
   public String getMake() {
@@ -28,5 +39,34 @@ public class Car {
 
   public String getOwner() {
     return owner;
+  }
+
+  public void setMake(String make) {
+    this.make = make;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
+  }
+
+  public void setOwner(String owner) {
+    this.owner = owner;
+  }
+
+  public JsonObject toJson() {
+    return Json.createObjectBuilder()
+        .add("make", make)
+        .add("model", model)
+        .add("color", color)
+        .add("owner", owner)
+        .build();
+  }
+
+  public static Car fromJson(String carAsString) {
+    return new Car(Json.createReader(new StringReader(carAsString)).readObject());
   }
 }

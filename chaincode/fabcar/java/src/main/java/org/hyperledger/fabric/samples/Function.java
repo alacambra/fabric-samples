@@ -10,7 +10,7 @@ public enum Function {
   changeCarOwner,
   none;
 
-  public Function fromString(String function) {
+  public static Function fromString(String function) {
 
     return Stream.of(Function.values()).findAny().orElse(none);
 
