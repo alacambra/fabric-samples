@@ -12,7 +12,11 @@ public enum Function {
 
   public static Function fromString(String function) {
 
-    return Stream.of(Function.values()).findAny().orElse(none);
+    return Stream.of(Function.values())
+        .map(Enum::name)
+        .filter(function::equals)
+        .findAny().map(Function::valueOf)
+        .orElse(none);
 
   }
 }

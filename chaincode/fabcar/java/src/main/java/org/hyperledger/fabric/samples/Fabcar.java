@@ -34,6 +34,9 @@ public class Fabcar extends ChaincodeBase {
     Function function = Function.fromString(chaincodeStub.getFunction());
     Response response = null;
 
+    LOGGER.info("[invoke] invoking function " + function.name());
+
+
     switch (function) {
 
       case queryCar:
@@ -56,6 +59,9 @@ public class Fabcar extends ChaincodeBase {
         break;
     }
 
+    LOGGER.info("[invoke] Sendinf response=" + response.getStatus());
+
+
     return response;
   }
 
@@ -67,6 +73,10 @@ public class Fabcar extends ChaincodeBase {
     }
 
     byte[] carAsBytes = stub.getState(args.get(0));
+
+    LOGGER.info(String.format("[queryCar] Get car %s = %s", args.get(0), new String(carAsBytes)));
+
+
     return newSuccessResponse(carAsBytes);
   }
 
@@ -113,7 +123,8 @@ public class Fabcar extends ChaincodeBase {
     try (QueryResultsIterator<KeyValue> it = stub.getStateByRange(startKey, endKey)) {
 
       JsonArray arr = StreamSupport.stream(it.spliterator(), false).map(this::toJsonRecord).collect(JsonCollectors.toJsonArray());
-      return newSuccessResponse(arr.toString());
+      LOGGER.info("[queryAllCars] CARS=" + arr);
+      return newSuccessResponse(arr.toString().getBytes());
 
     } catch (Exception e) {
       return newErrorResponse(e);
@@ -123,7 +134,7 @@ public class Fabcar extends ChaincodeBase {
   private JsonObject toJsonRecord(KeyValue kv) {
 
     JsonObject recordJson = Json.createReader(new StringReader(kv.getStringValue())).readObject();
-    return Json.createObjectBuilder().add("Key", kv.getStringValue()).add("Record", recordJson).build();
+    return Json.createObjectBuilder().add("Key", kv.getKey()).add("Record", recordJson).build();
 
   }
 
