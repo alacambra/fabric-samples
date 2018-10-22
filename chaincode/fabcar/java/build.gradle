@@ -3,7 +3,7 @@ plugins {
   id 'java'
 }
 
-group 'org.hyperledger.fabric-chaincode-java'
+group 'tech.lacambra.fabric.samples'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -26,6 +26,6 @@ shadowJar {
   classifier = null
 
   manifest {
-    attributes 'Main-Class': ' org.hyperledger.fabric.samples.Fabcar'
+    attributes 'Main-Class': 'tech.lacambra.fabric.samples'
   }
 }

@@ -1,4 +1,4 @@
-package org.hyperledger.fabric.samples;
+package tech.lacambra.fabric.samples;
 
 import org.hyperledger.fabric.shim.ChaincodeBase;
 import org.hyperledger.fabric.shim.ChaincodeStub;

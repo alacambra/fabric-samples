@@ -1,4 +1,4 @@
-package org.hyperledger.fabric.samples;
+package tech.lacambra.fabric.samples;
 
 import java.util.stream.Stream;
 

@@ -1,6 +1,7 @@
 package org.hyperledger.fabric.samples;
 
 import org.junit.Test;
+import tech.lacambra.fabric.samples.Function;
 
 import static org.junit.Assert.*;
 

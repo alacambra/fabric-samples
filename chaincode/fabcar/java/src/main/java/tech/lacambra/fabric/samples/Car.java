@@ -1,4 +1,4 @@
-package org.hyperledger.fabric.samples;
+package tech.lacambra.fabric.samples;
 
 import javax.json.Json;
 import javax.json.JsonObject;
