@@ -55,7 +55,7 @@ public class Fabcar extends ChaincodeBase {
         response = changeCarOwner(chaincodeStub, chaincodeStub.getParameters());
         break;
       case none:
-        response = newErrorResponse("Invalid Smart Contract function name.");
+        response = newErrorResponse("Invalid Smart Contract function name: " + function.name());
         break;
     }
 
